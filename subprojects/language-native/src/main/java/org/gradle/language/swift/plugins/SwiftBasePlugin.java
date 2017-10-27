@@ -118,6 +118,7 @@ public class SwiftBasePlugin implements Plugin<ProjectInternal> {
 
                     // Add an install task
                     // TODO - maybe not for all executables
+                    System.out.println("CReating install task " + names.getTaskName("install"));
                     final InstallExecutable install = tasks.create(names.getTaskName("install"), InstallExecutable.class);
                     install.setPlatform(link.getTargetPlatform());
                     install.setToolChain(link.getToolChain());
