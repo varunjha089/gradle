@@ -29,14 +29,14 @@ public interface SwiftXCTestSuite extends SwiftComponent {
     /**
      * The tested component.
      *
-     * @since 4.3
+     * @since 4.4
      */
     SwiftComponent getTestedComponent();
 
     /**
      * Sets the tested component.
      * @param testedComponent the component under test
-     * @since 4.3
+     * @since 4.4
      */
     void setTestedComponent(SwiftComponent testedComponent);
 }
