@@ -55,11 +55,21 @@ public class XcTest extends AbstractTestTask {
         return new XCTestTestExecutionSpec(workingDirectory.getAsFile().get(), testBundleDirectory.getAsFile().get(), getPath());
     }
 
+    /**
+     *
+     * @return
+     * @since 4.4
+     */
     @InputDirectory
     public DirectoryProperty getTestBundleDirectory() {
         return testBundleDirectory;
     }
 
+    /**
+     *
+     * @return
+     * @since 4.4
+     */
     @Internal
     public DirectoryProperty getWorkingDirectory() {
         return workingDirectory;

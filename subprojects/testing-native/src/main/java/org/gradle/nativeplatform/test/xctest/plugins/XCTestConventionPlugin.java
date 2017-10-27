@@ -63,6 +63,11 @@ import java.util.concurrent.Callable;
 public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
     private final MacOSSdkPlatformPathLocator sdkPlatformPathLocator;
 
+    /**
+     *
+     * @param sdkPlatformPathLocator
+     * @since 4.4
+     */
     @Inject
     public XCTestConventionPlugin(MacOSSdkPlatformPathLocator sdkPlatformPathLocator) {
         this.sdkPlatformPathLocator = sdkPlatformPathLocator;
