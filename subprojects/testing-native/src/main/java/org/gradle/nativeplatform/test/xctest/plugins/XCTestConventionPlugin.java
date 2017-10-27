@@ -146,7 +146,7 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
             result = tasks.create("xcTest", RunTestExecutable.class, new Action<RunTestExecutable>() {
                 @Override
                 public void execute(RunTestExecutable testTask) {
-                    final InstallExecutable installTask = (InstallExecutable) tasks.getByName("installUnitTestExecutable");
+                    final InstallExecutable installTask = (InstallExecutable) tasks.getByName("installTest");
                     testTask.setExecutable(installTask.getRunScript());
 
                     // TODO: Honor changes to build directory
