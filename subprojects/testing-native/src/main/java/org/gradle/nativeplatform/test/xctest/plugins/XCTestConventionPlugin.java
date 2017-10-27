@@ -185,6 +185,7 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
         project.getExtensions().add(SwiftXCTestSuite.class, "xctest", testSuite);
         project.getComponents().add(testSuite);
         project.getComponents().add(testSuite.getDevelopmentBinary());
+        System.out.println("IS SwiftExecutable " + (testSuite.getDevelopmentBinary() instanceof SwiftExecutable));
 
         // Setup component
         testSuite.getModule().set(GUtil.toCamelCase(project.getName() + "Test"));
