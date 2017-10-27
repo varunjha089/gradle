@@ -57,6 +57,7 @@ public class XcTest extends AbstractTestTask {
 
     /**
      * Returns the test bundle property for this test.
+     *
      * @since 4.4
      */
     @InputDirectory
@@ -66,6 +67,7 @@ public class XcTest extends AbstractTestTask {
 
     /**
      * Returns the working directory property for this test.
+     *
      * @since 4.4
      */
     @Internal

@@ -65,7 +65,7 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
 
     /**
      * Default injecting constructor.
-     * 
+     *
      * @since 4.4
      */
     @Inject
