@@ -111,6 +111,7 @@ if (OperatingSystem.current().linux) {
         testBundle.writeToProject(testDirectory)
 
         when:
+        executer.withArgument("--all").withTasks("tasks").run()
         fails("test")
 
         then:
