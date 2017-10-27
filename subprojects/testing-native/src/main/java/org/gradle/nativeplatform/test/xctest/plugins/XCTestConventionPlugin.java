@@ -64,8 +64,8 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
     private final MacOSSdkPlatformPathLocator sdkPlatformPathLocator;
 
     /**
-     *
-     * @param sdkPlatformPathLocator
+     * Default injecting constructor.
+     * 
      * @since 4.4
      */
     @Inject
