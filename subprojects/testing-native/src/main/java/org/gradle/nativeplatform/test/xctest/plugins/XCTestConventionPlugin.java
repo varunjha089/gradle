@@ -146,6 +146,14 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
             result = tasks.create("xcTest", RunTestExecutable.class, new Action<RunTestExecutable>() {
                 @Override
                 public void execute(RunTestExecutable testTask) {
+                    for (Task t : tasks.matching(new Spec<Task>() {
+                        @Override
+                        public boolean isSatisfiedBy(Task element) {
+                            return element.getName().startsWith("install");
+                        }
+                    })) {
+                        System.out.println(" ----- " + t.getName());
+                    }
                     final InstallExecutable installTask = (InstallExecutable) tasks.getByName("installTest");
                     testTask.setExecutable(installTask.getRunScript());
 
