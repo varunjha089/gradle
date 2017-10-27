@@ -16,7 +16,14 @@
 
 package org.gradle.nativeplatform.test.xctest;
 
+import org.gradle.api.Incubating;
 import org.gradle.language.swift.SwiftExecutable;
 
+/**
+ * Swift XCTest executable
+ *
+ * @since 4.4
+ */
+@Incubating
 public interface SwiftXCTestExecutable extends SwiftExecutable {
 }

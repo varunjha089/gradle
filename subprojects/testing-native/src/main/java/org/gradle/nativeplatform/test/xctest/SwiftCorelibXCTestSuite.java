@@ -19,7 +19,7 @@ package org.gradle.nativeplatform.test.xctest;
 import org.gradle.api.Incubating;
 
 /**
- * A XCTest suite targeting Xcode runtime of the API.
+ * A XCTest suite targeting corelibs runtime of the API.
  *
  * @since 4.4
  */
