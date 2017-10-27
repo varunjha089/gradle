@@ -20,7 +20,7 @@ import org.gradle.integtests.fixtures.AbstractIntegrationSpec
 import org.gradle.util.Requires
 import org.gradle.util.TestPrecondition
 
-@Requires(TestPrecondition.NOT_MAC_OS_X)
+@Requires(TestPrecondition.WINDOWS)
 class NonMacOSXCTestPluginIntegrationTest extends AbstractIntegrationSpec {
     def setup() {
         buildFile << "apply plugin: 'xctest'"
