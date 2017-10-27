@@ -60,11 +60,11 @@ if (OperatingSystem.current().linux) {
 
     }
 
-    private String getXcTestImportPath() {
+    private File getXcTestImportPath() {
         for (File pathEntry : toolChain.getPathEntries()) {
             File result = new File(pathEntry.parentFile, 'lib/swift/linux/x86_64/XCTest.swiftmodule')
             if (result.exists()) {
-                return result.parent
+                return result.parentFile
             }
         }
 
