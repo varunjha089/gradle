@@ -51,9 +51,9 @@ apply plugin: 'xctest'
 if (OperatingSystem.current().linux) {
     buildFile << """
     configurations {
-        testSwiftImportPath files(${xcTestImportPath})
-        testNativeLink files(${xcTestLinkFile})
-        testNativeRuntime files(${xcTestRuntimeFile})
+        testSwiftImportPath files('${xcTestImportPath}')
+        testNativeLink files('${xcTestLinkFile}')
+        testNativeRuntime files('${xcTestRuntimeFile}')
     }
 """
 }
