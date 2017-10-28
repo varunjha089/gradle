@@ -22,6 +22,7 @@ import org.gradle.api.Incubating;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
+import org.gradle.api.component.SoftwareComponent;
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.internal.project.ProjectInternal;
 import org.gradle.api.specs.Spec;
@@ -182,9 +183,24 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
                 "test", project.getConfigurations());
         }
 
+        for (SoftwareComponent c : project.getComponents()) {
+            System.out.println(c.getName() + " - " + c.getClass().getCanonicalName());
+        }
+        for (Task t : project.getTasks()) {
+            System.out.println(t.getName() + " -- " + t.getClass().getCanonicalName());
+        }
+
         project.getExtensions().add(SwiftXCTestSuite.class, "xctest", testSuite);
         project.getComponents().add(testSuite);
         project.getComponents().add(testSuite.getDevelopmentBinary());
+
+        for (SoftwareComponent c : project.getComponents()) {
+            System.out.println(c.getName() + " - " + c.getClass().getCanonicalName());
+        }
+        for (Task t : project.getTasks()) {
+            System.out.println(t.getName() + " -- " + t.getClass().getCanonicalName());
+        }
+
         System.out.println("IS SwiftExecutable " + (testSuite.getDevelopmentBinary() instanceof SwiftExecutable));
         System.out.println("Dev binary: " + testSuite.getDevelopmentBinary().getName());
 
