@@ -146,12 +146,24 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
         } else {
             result = tasks.create("xcTest", RunTestExecutable.class, new Action<RunTestExecutable>() {
                 @Override
-                public void execute(RunTestExecutable testTask) {
+                public void execute(final RunTestExecutable testTask) {
                     for (Task t : tasks) {
                         System.out.println(" ----- " + t.getName() + " -- " + t.getClass().getCanonicalName());
                     }
-                    final InstallExecutable installTask = (InstallExecutable) tasks.getByName("installTest");
-                    testTask.setExecutable(installTask.getRunScript());
+                    tasks.matching(new Spec<Task>() {
+                        @Override
+                        public boolean isSatisfiedBy(Task element) {
+                            System.out.println("MATCHING: " + element.getName());
+                            return element.getName().equals("installTest");
+                        }
+                    }).all(new Action<Task>() {
+                        @Override
+                        public void execute(Task installTask) {
+                            //final InstallExecutable installTask = (InstallExecutable) tasks.getByName("installTest");
+                            testTask.setExecutable(((InstallExecutable)installTask).getRunScript());
+                        }
+                    });
+
 
                     // TODO: Honor changes to build directory
                     testTask.setOutputDir(project.getLayout().getBuildDirectory().dir("test-results/xctest").get().getAsFile());
