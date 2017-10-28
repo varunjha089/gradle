@@ -186,7 +186,7 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
         project.getComponents().add(testSuite);
         project.getComponents().add(testSuite.getDevelopmentBinary());
         System.out.println("IS SwiftExecutable " + (testSuite.getDevelopmentBinary() instanceof SwiftExecutable));
-        System.out.println("Dev binary: " + testSuite.getDevelopmentBinary());
+        System.out.println("Dev binary: " + testSuite.getDevelopmentBinary().getName());
 
         // Setup component
         testSuite.getModule().set(GUtil.toCamelCase(project.getName() + "Test"));

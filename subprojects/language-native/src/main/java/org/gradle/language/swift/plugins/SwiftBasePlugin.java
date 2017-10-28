@@ -97,6 +97,7 @@ public class SwiftBasePlugin implements Plugin<ProjectInternal> {
 
                 ((DefaultSwiftBinary)binary).getObjectsDir().set(compile.getObjectFileDir());
 
+                System.out.println("Base binary: " + binary.getName());
                 if (binary instanceof SwiftExecutable) {
                     // Add a link task
                     LinkExecutable link = tasks.create(names.getTaskName("link"), LinkExecutable.class);
