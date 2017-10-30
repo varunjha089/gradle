@@ -68,7 +68,7 @@ public abstract class XCTestSourceElement extends SwiftSourceElement implements 
         content.append("  ])\n");
 //        content.append("#endif\n");
 
-        return sourceFile("swift", "LinuxMain.swift", content.toString());
+        return sourceFile("swift", "main.swift", content.toString());
     }
 
     @Override
