@@ -50,13 +50,20 @@ public abstract class XCTestSourceElement extends SwiftSourceElement implements 
         StringBuilder content = new StringBuilder();
 //        content.append("#if !os(macOS)\n");
         content.append("  import XCTest\n");
-        content.append("  XCTMain([\n");
+
         for (XCTestSourceFileElement testSuite : getTestSuites()) {
-            content.append("    testCase([\n");
+            content.append("  extension " + testSuite.getTestSuiteName() + " {\n");
+            content.append("    public static var allTests = [\n");
             for (XCTestCaseElement testCase : testSuite.getTestCases()) {
                 content.append("      (\"" + testCase.getName() + "\", " + testCase.getName() + "),\n");
             }
-            content.append("    ]),\n");
+            content.append("    ]\n");
+            content.append("  }\n");
+        }
+
+        content.append("  XCTMain([\n");
+        for (XCTestSourceFileElement testSuite : getTestSuites()) {
+            content.append("    testCase(" + testSuite.getTestSuiteName() + ".allTests),\n");
         }
         content.append("  ])\n");
 //        content.append("#endif\n");
