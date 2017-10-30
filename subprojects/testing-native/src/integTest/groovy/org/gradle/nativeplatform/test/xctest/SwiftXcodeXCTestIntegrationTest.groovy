@@ -75,7 +75,7 @@ if (OperatingSystem.current().linux) {
         for (File pathEntry : toolChain.getPathEntries()) {
             File result = new File(pathEntry.parentFile, 'lib/swift/linux/libXCTest.so')
             if (result.exists()) {
-                return result.parent
+                return result.absolutePath
             }
         }
 
