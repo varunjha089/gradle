@@ -51,7 +51,9 @@ apply plugin: 'xctest'
 if (OperatingSystem.current().linux) {
     buildFile << """
     dependencies {
-        swiftImportTest file('${xcTestImportPath}')
+        def b = objects.directoryProperty()
+        b.set('${xcTestImportPath}')
+        swiftImportTest b
         nativeLinkTest files('${xcTestLinkFile}')
         nativeRuntimeTest files('${xcTestRuntimeFile}')
     }
