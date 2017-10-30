@@ -20,6 +20,7 @@ import com.google.common.collect.Lists;
 import org.gradle.api.Transformer;
 import org.gradle.integtests.fixtures.SourceFile;
 import org.gradle.integtests.fixtures.TestExecutionResult;
+import org.gradle.internal.os.OperatingSystem;
 import org.gradle.util.CollectionUtils;
 
 import java.util.List;
@@ -32,12 +33,35 @@ public abstract class XCTestSourceElement extends SwiftSourceElement implements 
 
     @Override
     public List<SourceFile> getFiles() {
-        return CollectionUtils.collect(getTestSuites(), new Transformer<SourceFile, XCTestSourceFileElement>() {
+        List<SourceFile> result = Lists.newArrayList(CollectionUtils.collect(getTestSuites(), new Transformer<SourceFile, XCTestSourceFileElement>() {
             @Override
             public SourceFile transform(XCTestSourceFileElement element) {
                 return element.getSourceFile();
             }
-        });
+        }));
+
+        if (OperatingSystem.current().isLinux()) {
+            result.add(getLinuxMainSourceFile());
+        }
+        return result;
+    }
+
+    private SourceFile getLinuxMainSourceFile() {
+        StringBuilder content = new StringBuilder();
+//        content.append("#if !os(macOS)\n");
+        content.append("  import XCTest\n");
+        content.append("  XCTMain([\n");
+        for (XCTestSourceFileElement testSuite : getTestSuites()) {
+            content.append("    testCase([\n");
+            for (XCTestCaseElement testCase : testSuite.getTestCases()) {
+                content.append("      (\"" + testCase.getName() + "\", " + testCase.getName() + "),\n");
+            }
+            content.append("    ]),\n");
+        }
+        content.append("  ])\n");
+//        content.append("#endif\n");
+
+        return sourceFile("swift", "LinuxMain.swift", content.toString());
     }
 
     @Override
