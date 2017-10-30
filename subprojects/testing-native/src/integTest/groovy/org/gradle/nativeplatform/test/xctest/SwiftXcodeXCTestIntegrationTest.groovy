@@ -52,7 +52,7 @@ if (OperatingSystem.current().linux) {
     buildFile << """
     dependencies {
         def b = layout.directoryProperty()
-        b.set('${xcTestImportPath}')
+        b.set(file('${xcTestImportPath}'))
         swiftImportTest b
         nativeLinkTest files('${xcTestLinkFile}')
         nativeRuntimeTest files('${xcTestRuntimeFile}')
