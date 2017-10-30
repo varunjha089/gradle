@@ -247,6 +247,7 @@ apply plugin: 'swift-library'
         result.assertTasksSkipped(":compileDebugSwift", ":compileTestSwift", ":linkTest", ":bundleSwiftTest", ":xcTest", ":test")
     }
 
+    @Requires(TestPrecondition.MAC_OS_X)
     def "build logic can change source layout convention"() {
         def lib = new SwiftLibWithXCTest().inProject(rootProjectName)
 
