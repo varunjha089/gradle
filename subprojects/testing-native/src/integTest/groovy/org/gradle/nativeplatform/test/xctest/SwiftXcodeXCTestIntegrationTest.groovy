@@ -51,11 +51,12 @@ apply plugin: 'xctest'
 if (OperatingSystem.current().linux) {
     buildFile << """
     dependencies {
-        def b = layout.directoryProperty()
-        b.set(file('${xcTestImportPath}'))
-        swiftImportTest b
+        swiftImportTest files('${xcTestImportPath}')
         nativeLinkTest files('${xcTestLinkFile}')
         nativeRuntimeTest files('${xcTestRuntimeFile}')
+    }
+    afterEvaluate {
+        println configurations.swiftImportTest.files
     }
 """
 }
