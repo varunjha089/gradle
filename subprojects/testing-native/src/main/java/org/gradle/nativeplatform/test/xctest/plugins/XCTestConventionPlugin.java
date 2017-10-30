@@ -244,7 +244,7 @@ public class XCTestConventionPlugin implements Plugin<ProjectInternal> {
 
                 if (!OperatingSystem.current().isMacOsX()) {
                     tasks.withType(RunTestExecutable.class).getByName("xcTest")
-                        .dependsOn(((SwiftExecutable)testedComponent.getDevelopmentBinary()).getInstallDirectory());
+                        .dependsOn(((SwiftExecutable)testSuite.getDevelopmentBinary()).getInstallDirectory());
                 }
             }
         };
